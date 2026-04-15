@@ -132,7 +132,6 @@ poetry run ruff format .
 - Контроль доступа на основе подписок
 - Валидация ввода с Pydantic
 - Структурированное логирование с контекстом
-- SSL сертификат: SHA256:9qwcljntHiyelg4PrIGoRXxY1NA5Mdxxxkbj+TqePLc
 
 ## Лицензия
 
