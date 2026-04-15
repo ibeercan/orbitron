@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "orbitron-backend"
+version = "0.1.0"
+description = "AI-powered astrology service backend"
+authors = ["Orbitron Team"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.0"
+uvicorn = {extras = ["standard"], version = "^0.32.0"}
+sqlalchemy = "^2.0.35"
+alembic = "^1.13.3"
+psycopg2-binary = "^2.9.9"
+redis = "^5.0.8"
+python-jose = {extras = ["cryptography"], version = "^3.5.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-multipart = "^0.0.26"
+pydantic = "^2.9.0"
+pydantic-settings = "^2.5.2"
+stellium = "^0.1.0"
+pydantic-ai = {extras = ["openai"], version = "^0.0.14"}
+rich = "^13.9.2"
+structlog = "^24.4.0"
+slowapi = "^0.1.9"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-asyncio = "^0.23.0"
+httpx = "^0.27.0"
+ruff = "^0.6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
