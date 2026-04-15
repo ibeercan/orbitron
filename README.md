@@ -43,8 +43,8 @@ docker-compose up --build
 ### Бэкенд
 ```bash
 cd backend
-poetry install
-poetry run uvicorn app.main:app --reload
+pip install -r ../requirements.txt
+uvicorn app.main:app --reload
 ```
 
 ### Фронтенд
