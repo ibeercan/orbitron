@@ -72,4 +72,4 @@ poetry run uvicorn app.main:app --reload
 - API: `api.orbitron.pro`
 
 ## Лицензия
-AGPL-3.0
+AGPL-3.0# Orbitron Project
