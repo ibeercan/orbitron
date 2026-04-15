@@ -6,12 +6,16 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     build-essential \
     pkg-config \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements
 COPY requirements.txt .
 
-# Install dependencies
+# Upgrade pip first
+RUN pip install --upgrade pip
+
+# Install dependencies with verbose output
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy source code
