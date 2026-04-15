@@ -1,35 +1,35 @@
 # Orbitron Backend
 
-AI-powered astrology service backend built with FastAPI, Stellium, and Pydantic-AI.
+Бэкенд сервиса астрологии с ИИ, построенный на FastAPI, Stellium и Pydantic-AI.
 
-## Features
+## Функции
 
-- **Natal Charts**: Generate beautiful SVG charts using Stellium library
-- **AI Interpretation**: Get personalized astrological insights with GPT-4
-- **User Management**: JWT authentication with subscription tiers
-- **Security**: Rate limiting, CORS, input validation, structured logging
+- **Натальные карты**: Генерация красивых SVG-карт с помощью библиотеки Stellium
+- **Интерпретация ИИ**: Персонализированные астрологические insights с GPT-4
+- **Управление пользователями**: JWT аутентификация с уровнями подписок
+- **Безопасность**: Ограничение скорости, CORS, валидация ввода, структурированное логирование
 
-## Quick Start
+## Быстрый старт
 
-### Prerequisites
+### Предварительные требования
 
-- Docker and Docker Compose
+- Docker и Docker Compose
 - Python 3.12+
 
-### Installation
+### Установка
 
-1. Clone the repository:
+1. Клонируйте репозиторий:
 ```bash
 git clone <repo-url>
 cd backend
 ```
 
-2. Copy environment file:
+2. Скопируйте файл окружения:
 ```bash
 cp .env.example .env
 ```
 
-3. Edit `.env` with your secrets:
+3. Отредактируйте `.env` с вашими секретами:
 ```env
 DATABASE_URL=postgresql://user:pass@localhost:5432/astrology
 JWT_SECRET_KEY=your-super-secret-key-change-in-production
@@ -37,53 +37,53 @@ AI_API_KEY=your-api-key
 AI_BASE_URL=https://your-custom-provider.com/v1  # опционально
 AI_MODEL=gpt-4  # или другое
 REDIS_URL=redis://redis:6379
-LOG_LEVEL=INFO  # DEBUG for development, INFO for production
+LOG_LEVEL=INFO  # DEBUG для разработки, INFO для продакшена
 ```
 
-4. Run with Docker Compose:
+4. Запустите с Docker Compose:
 ```bash
 docker-compose up --build
 ```
 
-The API will be available at `http://localhost:8000` (or via Traefik at `api.orbitron.pro`).
+API будет доступен по адресу `http://localhost:8000` (или через Traefik по адресу `api.orbitron.pro`).
 
-## AI Configuration
+## Конфигурация ИИ
 
-The service supports custom AI agents. Configure via environment variables:
+Сервис поддерживает кастомных ИИ-агентов. Настройте через переменные окружения:
 
-- `AI_API_KEY`: Your API key (OpenAI or custom provider)
-- `AI_BASE_URL`: Base URL for custom providers (optional, defaults to OpenAI)
-- `AI_MODEL`: Model name (e.g., "gpt-4", "local-model")
+- `AI_API_KEY`: Ваш API ключ (OpenAI или кастомный провайдер)
+- `AI_BASE_URL`: Base URL для кастомных провайдеров (опционально, по умолчанию OpenAI)
+- `AI_MODEL`: Название модели (например, "gpt-4", "local-model")
 
-Example for OpenAI:
+Пример для OpenAI:
 ```env
 AI_API_KEY=sk-your-openai-key
 AI_MODEL=gpt-4
 ```
 
-Example for custom provider:
+Пример для кастомного провайдера:
 ```env
 AI_API_KEY=your-custom-key
 AI_BASE_URL=https://your-llm-server.com/v1
 AI_MODEL=your-model-name
 ```
 
-## API Documentation
+## Документация API
 
-Once running, visit `/docs` for interactive API documentation.
+После запуска посетите `/docs` для интерактивной документации API.
 
-### Key Endpoints
+### Основные эндпоинты
 
-- `POST /api/v1/auth/register` - User registration
-- `POST /api/v1/auth/login` - User login
-- `POST /api/v1/charts/natal` - Create natal chart
-- `POST /api/v1/ai/{chart_id}/interpret` - AI interpretation
+- `POST /api/v1/auth/register` - Регистрация пользователя
+- `POST /api/v1/auth/login` - Вход пользователя
+- `POST /api/v1/charts/natal` - Создание натальной карты
+- `POST /api/v1/ai/{chart_id}/interpret` - Интерпретация ИИ
 
-## Development
+## Разработка
 
-### Local Setup (with SQLite)
+### Локальная настройка (с SQLite)
 
-For quick development without Docker:
+Для быстрой разработки без Docker:
 ```bash
 poetry install
 export DATABASE_URL=sqlite:///./dev.db
@@ -91,48 +91,49 @@ export LOG_LEVEL=DEBUG
 poetry run uvicorn app.main:app --reload
 ```
 
-### Docker Development
+### Разработка в Docker
 
-Use the development compose for full environment:
+Используйте compose для разработки для полной среды:
 ```bash
 docker-compose -f compose.dev.yaml up --build
 ```
 
-This uses SQLite database and hot reload for faster development.
+Это использует базу данных SQLite и hot reload для более быстрой разработки.
 
-### Production
+### Продакшн
 
-Use the main compose.yaml for production deployment with PostgreSQL and Traefik.
+Используйте основной compose.yaml для развертывания в продакшене с PostgreSQL и Traefik.
 
-### Testing
+### Тестирование
 
 ```bash
 poetry run pytest
 ```
 
-### Linting
+### Линтинг
 
 ```bash
 poetry run ruff check .
 poetry run ruff format .
 ```
 
-## Deployment
+## Развертывание
 
-The application is containerized and ready for deployment with Traefik reverse proxy.
+Приложение контейнеризовано и готово к развертыванию с Traefik reverse proxy.
 
-1. Ensure Traefik is configured for `api.orbitron.pro`
-2. Set environment variables in your deployment environment
-3. Run `docker-compose up -d`
+1. Убедитесь, что Traefik настроен для `api.orbitron.pro`
+2. Установите переменные окружения в вашей среде развертывания
+3. Запустите `docker-compose up -d`
 
-## Security
+## Безопасность
 
-- JWT tokens with configurable expiration
-- Rate limiting (100 requests/minute globally)
-- Subscription-based access control
-- Input validation with Pydantic
-- Structured logging with context
+- JWT токены с настраиваемым сроком действия
+- Ограничение скорости (100 запросов/минуту глобально)
+- Контроль доступа на основе подписок
+- Валидация ввода с Pydantic
+- Структурированное логирование с контекстом
+- SSL сертификат: SHA256:9qwcljntHiyelg4PrIGoRXxY1NA5Mdxxxkbj+TqePLc
 
-## License
+## Лицензия
 
 AGPL-3.0
